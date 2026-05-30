@@ -1,210 +1,355 @@
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hospital Queue Management</title>
-  <link rel="stylesheet" href="queue.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
-</head>
-<body>
-
-  <!-- ===== BACKGROUND SHAPES ===== -->
-  <div class="bg-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
-
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="header-icon">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M2 17l10 5 10-5" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Queue Management</title>
+    <link rel="stylesheet" href="queue.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ===== BACKGROUND SHAPES ===== -->
+    <div class="bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
     </div>
-    <h1 class="header-title">Hospital Queue<br/>Management</h1>
-    <p class="header-subtitle">Efficient patient flow system</p>
-  </header>
 
-  <!-- ===== MAIN WRAPPER ===== -->
-  <main class="main-wrapper">
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 2L2 7l10 5 10-5-10-5z"
+            stroke="white"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M2 17l10 5 10-5"
+            stroke="white"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M2 12l10 5 10-5"
+            stroke="white"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <h1 class="header-title">Hospital Queues<br />Management</h1>
+      <p class="header-subtitle">Efficient patient flow system</p>
+    </header>
 
-    <!-- ===== PATIENT REGISTRATION CARD ===== -->
-    <div class="card registration-card">
-      <div class="card-label">Patient Registration</div>
-      <h2 class="card-heading">Get Your Token</h2>
+    <!-- ===== MAIN WRAPPER ===== -->
+    <main class="main-wrapper">
+      <!-- ===== PATIENT REGISTRATION CARD ===== -->
+      <div class="card registration-card">
+        <div class="card-label">Patient Registration</div>
+        <h2 class="card-heading">Get Your Token</h2>
 
-      <div class="input-group">
-        <div class="input-icon">
+        <div class="input-group">
+          <div class="input-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="12"
+                cy="7"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="patientName"
+            class="name-input"
+            placeholder="Enter your full name"
+            maxlength="60"
+            onkeydown="if (event.key === 'Enter') getToken();"
+          />
+        </div>
+
+        <div class="dept-row">
+          <label class="dept-label">Department</label>
+          <div class="dept-chips" id="deptChips">
+            <button class="chip active" onclick="selectDept(this, 'General')">
+              General
+            </button>
+            <button class="chip" onclick="selectDept(this, 'Cardiology')">
+              Cardiology
+            </button>
+            <button class="chip" onclick="selectDept(this, 'Orthopedics')">
+              Orthopedics
+            </button>
+            <button class="chip" onclick="selectDept(this, 'Pediatrics')">
+              Pediatrics
+            </button>
+            <button class="chip" onclick="selectDept(this, 'Neurology')">
+              Neurology
+            </button>
+            <button class="chip" onclick="selectDept(this, 'ENT')">ENT</button>
+          </div>
+        </div>
+
+        <button class="btn-get-token" onclick="getToken()" id="getTokenBtn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+            <rect
+              x="2"
+              y="7"
+              width="20"
+              height="14"
+              rx="2"
+              stroke="white"
+              stroke-width="2"
+            />
+            <path
+              d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"
+              stroke="white"
+              stroke-width="2"
+            />
+            <line
+              x1="12"
+              y1="12"
+              x2="12"
+              y2="16"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <line
+              x1="10"
+              y1="14"
+              x2="14"
+              y2="14"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
           </svg>
-        </div>
-        <input
-          type="text"
-          id="patientName"
-          class="name-input"
-          placeholder="Enter your full name"
-          maxlength="60"
-          onkeydown="if(event.key==='Enter') getToken()"
-        />
-      </div>
+          Get Token
+        </button>
 
-      <div class="dept-row">
-        <label class="dept-label">Department</label>
-        <div class="dept-chips" id="deptChips">
-          <button class="chip active" onclick="selectDept(this, 'General')">General</button>
-          <button class="chip" onclick="selectDept(this, 'Cardiology')">Cardiology</button>
-          <button class="chip" onclick="selectDept(this, 'Orthopedics')">Orthopedics</button>
-          <button class="chip" onclick="selectDept(this, 'Pediatrics')">Pediatrics</button>
-          <button class="chip" onclick="selectDept(this, 'Neurology')">Neurology</button>
-          <button class="chip" onclick="selectDept(this, 'ENT')">ENT</button>
-        </div>
-      </div>
-
-      <button class="btn-get-token" onclick="getToken()" id="getTokenBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="7" width="20" height="14" rx="2" stroke="white" stroke-width="2"/>
-          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="white" stroke-width="2"/>
-          <line x1="12" y1="12" x2="12" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <line x1="10" y1="14" x2="14" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        Get Token
-      </button>
-
-      <!-- Token Result -->
-      <div class="token-result" id="tokenResult">
-        <div class="token-divider"></div>
-        <div class="token-number-wrap">
-          <div class="token-number-label">Your Token Number</div>
-          <div class="token-number" id="tokenNumber">—</div>
-          <div class="token-dept-badge" id="tokenDeptBadge"></div>
-        </div>
-        <div class="token-info-grid">
-          <div class="token-info-item">
-            <div class="tii-icon tii-blue">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
+        <!-- Token Result -->
+        <div class="token-result" id="tokenResult">
+          <div class="token-divider"></div>
+          <div class="token-number-wrap">
+            <div class="token-number-label">Your Token Number</div>
+            <div class="token-number" id="tokenNumber">—</div>
+            <div class="token-dept-badge" id="tokenDeptBadge"></div>
+          </div>
+          <div class="token-info-grid">
+            <div class="token-info-item">
+              <div class="tii-icon tii-blue">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="9"
+                    cy="7"
+                    r="4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="tii-label">Patient Name</div>
+                <div class="tii-value" id="tokenPatientName">—</div>
+              </div>
             </div>
-            <div>
-              <div class="tii-label">Patient Name</div>
-              <div class="tii-value" id="tokenPatientName">—</div>
+            <div class="token-info-item">
+              <div class="tii-icon tii-amber">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <polyline
+                    points="12 6 12 12 16 14"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="tii-label">People Ahead</div>
+                <div class="tii-value" id="peopleAhead">—</div>
+              </div>
+            </div>
+            <div class="token-info-item">
+              <div class="tii-icon tii-green">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="18"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M16 2v4M8 2v4M3 10h18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="tii-label">Estimated Wait</div>
+                <div class="tii-value" id="estimatedWait">—</div>
+              </div>
+            </div>
+            <div class="token-info-item">
+              <div class="tii-icon tii-purple">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="tii-label">Department</div>
+                <div class="tii-value" id="tokenDeptName">—</div>
+              </div>
             </div>
           </div>
-          <div class="token-info-item">
-            <div class="tii-icon tii-amber">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <div>
-              <div class="tii-label">People Ahead</div>
-              <div class="tii-value" id="peopleAhead">—</div>
-            </div>
+        </div>
+      </div>
+
+      <!-- ===== NOW SERVING CARD ===== -->
+      <div class="card serving-card">
+        <div class="serving-top">
+          <div>
+            <div class="card-label">Reception Desk</div>
+            <h2 class="card-heading">Now Serving</h2>
           </div>
-          <div class="token-info-item">
-            <div class="tii-icon tii-green">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="serving-number-badge" id="nowServingBadge">—</div>
+        </div>
+
+        <div class="serving-patient-info" id="servingPatientInfo">
+          <div class="serving-avatar" id="servingAvatar">—</div>
+          <div>
+            <div class="serving-name" id="servingName">
+              Waiting for patients...
             </div>
-            <div>
-              <div class="tii-label">Estimated Wait</div>
-              <div class="tii-value" id="estimatedWait">—</div>
-            </div>
+            <div class="serving-dept" id="servingDept"></div>
           </div>
-          <div class="token-info-item">
-            <div class="tii-icon tii-purple">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="tii-label">Department</div>
-              <div class="tii-value" id="tokenDeptName">—</div>
-            </div>
+          <div class="serving-status" id="servingStatus"></div>
+        </div>
+
+        <button class="btn-next" onclick="nextPatient()" id="nextBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M5 12h14M12 5l7 7-7 7"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Call Next Patient
+        </button>
+      </div>
+
+      <!-- ===== QUEUE LIST CARD ===== -->
+      <div class="card queue-card">
+        <div class="queue-header">
+          <div>
+            <div class="card-label">Waiting Room</div>
+            <h2 class="card-heading">
+              Queue
+              <span class="queue-count-badge" id="queueCountBadge">0</span>
+            </h2>
+          </div>
+          <button class="btn-clear-all" onclick="clearAll()" id="clearAllBtn">
+            Clear All
+          </button>
+        </div>
+
+        <div class="queue-list" id="queueList">
+          <div class="queue-empty" id="queueEmpty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <circle
+                cx="9"
+                cy="7"
+                r="4"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <p>No patients in queue</p>
+            <span>Register a patient above to begin</span>
           </div>
         </div>
       </div>
+
+      <!-- ===== STATS CARD ===== -->
+      <div class="card stats-card">
+        <div class="card-label">Today's Summary</div>
+        <h2 class="card-heading">Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-box stat-blue">
+            <div class="stat-num" id="statTotal">0</div>
+            <div class="stat-lbl">Total Registered</div>
+          </div>
+          <div class="stat-box stat-green">
+            <div class="stat-num" id="statServed">0</div>
+            <div class="stat-lbl">Served Today</div>
+          </div>
+          <div class="stat-box stat-amber">
+            <div class="stat-num" id="statWaiting">0</div>
+            <div class="stat-lbl">Currently Waiting</div>
+          </div>
+          <div class="stat-box stat-purple">
+            <div class="stat-num" id="statAvgWait">0 min</div>
+            <div class="stat-lbl">Avg Wait Time</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast">
+      <div class="toast-icon" id="toastIcon"></div>
+      <span id="toastMsg"></span>
     </div>
 
-    <!-- ===== NOW SERVING CARD ===== -->
-    <div class="card serving-card">
-      <div class="serving-top">
-        <div>
-          <div class="card-label">Reception Desk</div>
-          <h2 class="card-heading">Now Serving</h2>
-        </div>
-        <div class="serving-number-badge" id="nowServingBadge">—</div>
-      </div>
-
-      <div class="serving-patient-info" id="servingPatientInfo">
-        <div class="serving-avatar" id="servingAvatar">—</div>
-        <div>
-          <div class="serving-name" id="servingName">Waiting for patients...</div>
-          <div class="serving-dept" id="servingDept"></div>
-        </div>
-        <div class="serving-status" id="servingStatus"></div>
-      </div>
-
-      <button class="btn-next" onclick="nextPatient()" id="nextBtn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Call Next Patient
-      </button>
-    </div>
-
-    <!-- ===== QUEUE LIST CARD ===== -->
-    <div class="card queue-card">
-      <div class="queue-header">
-        <div>
-          <div class="card-label">Waiting Room</div>
-          <h2 class="card-heading">Queue <span class="queue-count-badge" id="queueCountBadge">0</span></h2>
-        </div>
-        <button class="btn-clear-all" onclick="clearAll()" id="clearAllBtn">Clear All</button>
-      </div>
-
-      <div class="queue-list" id="queueList">
-        <div class="queue-empty" id="queueEmpty">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p>No patients in queue</p>
-          <span>Register a patient above to begin</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== STATS CARD ===== -->
-    <div class="card stats-card">
-      <div class="card-label">Today's Summary</div>
-      <h2 class="card-heading">Statistics</h2>
-      <div class="stats-grid">
-        <div class="stat-box stat-blue">
-          <div class="stat-num" id="statTotal">0</div>
-          <div class="stat-lbl">Total Registered</div>
-        </div>
-        <div class="stat-box stat-green">
-          <div class="stat-num" id="statServed">0</div>
-          <div class="stat-lbl">Served Today</div>
-        </div>
-        <div class="stat-box stat-amber">
-          <div class="stat-num" id="statWaiting">0</div>
-          <div class="stat-lbl">Currently Waiting</div>
-        </div>
-        <div class="stat-box stat-purple">
-          <div class="stat-num" id="statAvgWait">0 min</div>
-          <div class="stat-lbl">Avg Wait Time</div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- ===== TOAST ===== -->
-  <div class="toast" id="toast">
-    <div class="toast-icon" id="toastIcon"></div>
-    <span id="toastMsg"></span>
-  </div>
-
-  <script src="queue.js"></script>
-</body>
+    <script src="queue.js"></script>
+  </body>
 </html>
